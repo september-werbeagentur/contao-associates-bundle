@@ -1,0 +1,35 @@
+<?php
+
+array_insert($GLOBALS['TL_LANG']['tl_associates'], 0, [
+    'edit' => ['Bearbeiten', 'Partner ID %s bearbeiten'],
+    'copy' => ['Kopieren', 'Partner ID %s bearbeiten'],
+    'delete' => ['Löschen', 'Partner ID %s löschen'],
+    'show' => ['Anzeigen', 'Details anzeigen'],
+    'header_legend' => 'Partner',
+    'name' => ['Name', 'Name des Partners'],
+    'description' => ['Beschreibung', 'Kurze Beschreibung des Partners'],
+    'logo' => ['Logo', 'Logo des Partners'],
+    'image' => ['Titelbild', 'Titelbild, das in der Detailansicht angezeigt wird'],
+    'address_legend' => 'Adresse',
+    'street' => ['Straße', ''],
+    'street_number' => ['Hausnummer', ''],
+    'zip' => ['PLZ', ''],
+    'city' => ['Ort', ''],
+    'services_legend' => 'Dienstleistungen',
+    'services' => ['Dienstleistungen', 'Alle Dienstleistungen auswählen, die vom Partner angeboten werden'],
+    'branches_legend' => 'Branchen',
+    'branches' => ['Branchen', 'Alle Branchen auswählen, die vom Partner betreut werden'],
+    'languages_legend' => 'Fremdsprachen',
+    'languages' => [
+        'label' => ['Fremdsprachen', 'Fremdsprachen, die gesprochen werden auswählen'],
+        'options' => [
+            'english' => 'Englisch',
+            'french' => 'Französisch',
+            'latin' => 'Latein',
+            'polish' => 'Polnisch',
+            'romansh' => 'Rätoromanisch',
+            'russian' => 'Russisch',
+            'spanish' => 'Spanisch',
+        ],
+    ],
+]);

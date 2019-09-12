@@ -8,8 +8,8 @@ array_insert($GLOBALS['BE_MOD'], 1, [
             'table' => ['TableWizard', 'importTable'],
             'list' => ['ListWizard', 'importList'],
         ],
-        'september_services' => [
-            'tables' => ['tl_associates_types', 'tl_associate_services'],
+        'september_types' => [
+            'tables' => ['tl_associates_types', 'tl_associates_services'],
             'table' => ['TableWizard', 'importTable'],
             'list' => ['ListWizard', 'importList'],
         ],
@@ -18,7 +18,7 @@ array_insert($GLOBALS['BE_MOD'], 1, [
             'table' => ['TableWizard', 'importTable'],
             'list' => ['ListWizard', 'importList'],
         ],
-    ]
+    ],
 ]);
 
 if (defined('TL_MODE') && TL_MODE == 'BE') {

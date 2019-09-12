@@ -15,7 +15,6 @@ $GLOBALS['TL_DCA']['tl_associates_branches'] = [
             'mode' => 1,
             'flag' => 1,
             'fields' => ['name'],
-            'headerFields' => ['name'],
         ],
         'label' => [
             'fields' => ['name'],

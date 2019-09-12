@@ -6,5 +6,5 @@ array_insert($GLOBALS['TL_LANG']['tl_associates_branches'], 0, [
     'delete' => ['Löschen', 'Branche ID %s löschen'],
     'show' => ['Anzeigen', 'Details anzeigen'],
     'header_legend' => 'Branche',
-    'name' => ['Name', 'Name der Branche'],
+    'name' => ['Branche', 'Name der Branche'],
 ]);

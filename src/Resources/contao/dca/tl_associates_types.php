@@ -2,6 +2,7 @@
 
 $GLOBALS['TL_DCA']['tl_associates_types'] = [
     'config' => [
+        'label' => &$GLOBALS['TL_LANG']['tl_associates_types']['label'],
         'dataContainer' => 'Table',
         'ctable' => ['tl_associates_services'],
         'enableVersioning' => true,
@@ -15,36 +16,40 @@ $GLOBALS['TL_DCA']['tl_associates_types'] = [
         'sorting' => [
             'mode' => 1,
             'flag' => 1,
-            'fields' => [''],
-
-        ]
-    ],
-    'operations' => [
-        'edit' => [
-            'label' => &$GLOBALS['TL_LANG']['tl_associates_types']['edit'],
-            'href' => 'table=tl_associates_services',
-            'icon' => 'edit.gif',
+            'fields' => ['name'],
         ],
-        'editheader' => [
-            'label' => &$GLOBALS['TL_LANG']['tl_associates_types']['editheader'],
-            'href' => 'act=edit',
-            'icon' => 'header.gif',
+        'label' => [
+            'fields' => ['name'],
+            'format' => '%s',
+            'showColumns' => true,
         ],
-        'copy' => [
-            'label' => &$GLOBALS['TL_LANG']['tl_associates_types']['copy'],
-            'href' => 'act=copy',
-            'icon' => 'copy.gif',
-        ],
-        'delete' => [
-            'label' => &$GLOBALS['TL_LANG']['tl_associates_types']['delete'],
-            'href' => 'act=delete',
-            'icon' => 'delete.gif',
-            'attributes' => 'onclick="if(!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\'))return false;Backend.getScrollOffset()"',
-        ],
-        'show' => [
-            'label' => &$GLOBALS['TL_LANG']['tl_associates_types']['show'],
-            'href' => 'act=show',
-            'icon' => 'show.gif',
+        'operations' => [
+            'edit' => [
+                'label' => &$GLOBALS['TL_LANG']['tl_associates_types']['edit'],
+                'href' => 'table=tl_associates_services',
+                'icon' => 'edit.gif',
+            ],
+            'editheader' => [
+                'label' => &$GLOBALS['TL_LANG']['tl_associates_types']['editheader'],
+                'href' => 'act=edit',
+                'icon' => 'header.gif',
+            ],
+            'copy' => [
+                'label' => &$GLOBALS['TL_LANG']['tl_associates_types']['copy'],
+                'href' => 'act=copy',
+                'icon' => 'copy.gif',
+            ],
+            'delete' => [
+                'label' => &$GLOBALS['TL_LANG']['tl_associates_types']['delete'],
+                'href' => 'act=delete',
+                'icon' => 'delete.gif',
+                'attributes' => 'onclick="if(!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\'))return false;Backend.getScrollOffset()"',
+            ],
+            'show' => [
+                'label' => &$GLOBALS['TL_LANG']['tl_associates_types']['show'],
+                'href' => 'act=show',
+                'icon' => 'show.gif',
+            ],
         ],
     ],
     'palettes' => [
