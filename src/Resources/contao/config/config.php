@@ -20,3 +20,7 @@ array_insert($GLOBALS['BE_MOD'], 1, [
         ],
     ]
 ]);
+
+if (defined('TL_MODE') && TL_MODE == 'BE') {
+    $GLOBALS['TL_CSS'][] = 'bundles/contaoassociates/lib/css/be_associates.css|static';
+}
