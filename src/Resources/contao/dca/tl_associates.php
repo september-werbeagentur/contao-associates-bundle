@@ -47,7 +47,7 @@ $GLOBALS['TL_DCA']['tl_associates'] = [
     ],
     'palettes' => [
         '__selector__' => [],
-        'default' => '{header_legend},name,description,logo,image;{address_legend},street,street_number,zip,city;{services_legend},services;{branches_legend},branches;{languages_legend},languages;',
+        'default' => '{header_legend},name,description,logo,image;{address_legend},street,street_number,zip,city;{contact_legend},phone,fax,email,homepage;{services_legend},types,services;{branches_legend},branches;{languages_legend},languages;',
     ],
     'fields' => [
         'id' => [
@@ -144,14 +144,85 @@ $GLOBALS['TL_DCA']['tl_associates'] = [
             ],
             'sql' => "varchar(50) NOT NULL default ''",
         ],
+        'phone' => [
+            'label' => &$GLOBALS['TL_LANG']['tl_associates']['phone'],
+            'search' => true,
+            'inputType' => 'text',
+            'eval' => [
+                'maxlength' => 64,
+                'decodeEntities' => true,
+                'rgxp' => 'phone',
+                'tl_class' => 'w50',
+            ],
+            'sql' => "varchar(64) NOT NULL default ''",
+        ],
+        'fax' => [
+            'label' => &$GLOBALS['TL_LANG']['tl_associates']['fax'],
+            'search' => true,
+            'inputType' => 'text',
+            'eval' => [
+                'maxlength' => 64,
+                'decodeEntities' => true,
+                'rgxp' => 'phone',
+                'tl_class' => 'w50',
+            ],
+            'sql' => "varchar(64) NOT NULL default ''",
+        ],
+        'email' => [
+            'label' => &$GLOBALS['TL_LANG']['tl_associates']['email'],
+            'search' => true,
+            'inputType' => 'text',
+            'eval' => [
+                'maxlength' => 255,
+                'mandatory' => true,
+                'decodeEntities' => true,
+                'rgxp' => 'email',
+                'tl_class' => 'w50 clr',
+            ],
+            'sql' => "varchar(255) NOT NULL default ''",
+        ],
+        'homepage' => [
+            'label' => &$GLOBALS['TL_LANG']['tl_associates']['homepage'],
+            'search' => true,
+            'inputType' => 'text',
+            'eval' => [
+                'maxlength' => 255,
+                'decodeEntities' => true,
+                'dcaPicker' => true,
+                'tl_class' => 'w50 wizard',
+                'rgxp' => 'url',
+            ],
+            'sql' => "varchar(255) NOT NULL default ''",
+        ],
+        'types' => [
+            'label' => &$GLOBALS['TL_LANG']['tl_associates']['types'],
+            'inputType' => 'checkboxWizard',
+            'foreignKey' => 'tl_associates_types.name',
+            'eval' => [
+                'tl_class' => 'w50',
+                'multiple' => true,
+            ],
+            'sql' => "blob NULL",
+        ],
         'services' => [
             'label' => &$GLOBALS['TL_LANG']['tl_associates']['services'],
             'inputType' => 'checkboxWizard',
-            'options_callback' => ['tl_associates', 'getServicesOptions'],
+            'foreignKey' => 'tl_associates_services.name',
+            'eval' => [
+                'tl_class' => 'w50',
+                'multiple' => true,
+            ],
             'sql' => "blob NULL",
         ],
         'branches' => [
             'label' => &$GLOBALS['TL_LANG']['tl_associates']['branches'],
+            'inputType' => 'checkboxWizard',
+            'foreignKey' => 'tl_associates_branches.name',
+            'eval' => [
+                'tl_class' => 'w50',
+                'multiple' => true,
+            ],
+            'sql' => "blob NULL",
         ],
         'languages' => [
             'label' => &$GLOBALS['TL_LANG']['tl_associates']['languages']['label'],
@@ -171,14 +242,3 @@ $GLOBALS['TL_DCA']['tl_associates'] = [
         ],
     ],
 ];
-
-class tl_associates {
-    public function getServicesOptions(DataContainer $dc) {
-        var_dump($dc);
-        return [];
-    }
-
-    public function getBranchesOptions() {
-
-    }
-}
