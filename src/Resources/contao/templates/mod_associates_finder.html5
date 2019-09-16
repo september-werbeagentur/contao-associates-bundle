@@ -1,0 +1,44 @@
+<?php $this->extend('block_unsearchable'); ?>
+
+<?php $this->block('content'); ?>
+
+<div class="swa-associates-finder">
+    <?php $this->showTemplateVars(); ?>
+    <form action="">
+        <label>
+            Beratungsbereich
+            <select>
+                <?php foreach ($this->types as $type): ?>
+                    <option value="<?= $type->id ?>"><?= $type->name ?></option>
+                <?php endforeach; ?>
+            </select>
+        </label>
+        <label>
+            Dienstleistung
+            <select>
+                <?php foreach ($this->services as $service): ?>
+                    <option value="<?= $service->id ?>"><?= $service->name ?></option>
+                <?php endforeach; ?>
+            </select>
+        </label>
+        <label>
+            Branche
+            <select>
+                <?php foreach ($this->branches as $branch): ?>
+                    <option value="<?= $branch->id ?>"><?= $branch->name ?></option>
+                <?php endforeach; ?>
+            </select>
+        </label>
+        <label>
+            Fremdsprachen
+            <select>
+                <?php foreach ($this->languages as $key => $language): ?>
+                    <option value="<?= $key ?>"><?= $language ?></option>
+                <?php endforeach; ?>
+            </select>
+        </label>
+        <input type="submit" value="<?= $this->submitButton ?>">
+    </form>
+</div>
+
+<?php $this->endblock(); ?>
