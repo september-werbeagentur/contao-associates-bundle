@@ -4,39 +4,30 @@
 
 <div class="swa-associates-finder">
     <?php $this->showTemplateVars(); ?>
-    <form action="">
-        <label>
-            Beratungsbereich
-            <select>
+    <form class="swa-associates-finder__form" method="post" action="<?= $this->jumpTo ?>">
+        <input type="hidden" name="REQUEST_TOKEN" value="<?= REQUEST_TOKEN ?>">
+        <input type="hidden" name="types" value="">
+        <input type="hidden" name="services" value="">
+        <input type="hidden" name="branches" value="">
+        <input type="hidden" name="languages" value="">
+        <div class="swa-select" data-for="types">
+            <div class="swa-select__selected" data-value="0">Beratungsbereich auswählen</div>
+            <div class="swa-select__options">
+                <div class="swa-select__option selected" data-value="0">Beratungsbereich auswählen</div>
                 <?php foreach ($this->types as $type): ?>
-                    <option value="<?= $type->id ?>"><?= $type->name ?></option>
+                    <div class="swa-select__option" data-value="<?= $type->id ?>"><?= $type->name ?></div>
                 <?php endforeach; ?>
-            </select>
-        </label>
-        <label>
-            Dienstleistung
-            <select>
+            </div>
+        </div>
+        <div class="swa-select" data-for="services">
+            <div class="swa-select__selected">Dienstleistung auswählen</div>
+            <div class="swa-select__options">
+                <div class="swa-select__option selected" data-value="0">Dienstleistung auswählen</div>
                 <?php foreach ($this->services as $service): ?>
-                    <option value="<?= $service->id ?>"><?= $service->name ?></option>
+                    <div class="swa-select__option" data-value="<?= $service->id ?>"><?= $service->name ?></div>
                 <?php endforeach; ?>
-            </select>
-        </label>
-        <label>
-            Branche
-            <select>
-                <?php foreach ($this->branches as $branch): ?>
-                    <option value="<?= $branch->id ?>"><?= $branch->name ?></option>
-                <?php endforeach; ?>
-            </select>
-        </label>
-        <label>
-            Fremdsprachen
-            <select>
-                <?php foreach ($this->languages as $key => $language): ?>
-                    <option value="<?= $key ?>"><?= $language ?></option>
-                <?php endforeach; ?>
-            </select>
-        </label>
+            </div>
+        </div>
         <input type="submit" value="<?= $this->submitButton ?>">
     </form>
 </div>

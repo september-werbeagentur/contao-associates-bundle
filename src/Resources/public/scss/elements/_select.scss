@@ -1,0 +1,9 @@
+.swa-select {
+  background: #ddd;
+
+  &__option {
+    &.selected {
+      background: #bbb;
+    }
+  }
+}

@@ -1,5 +1,22 @@
 {
+  "scripts": {
+    "build": "node_modules/.bin/sass --style=compressed --no-source-map src/Resources/public/scss/:src/Resources/public/lib/css/ && node_modules/.bin/babel src/Resources/public/js -d src/Resources/public/lib/js"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env"
+      ],
+      [
+        "minify"
+      ]
+    ]
+  },
   "devDependencies": {
+    "@babel/cli": "^7.6.0",
+    "@babel/core": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
+    "babel-preset-minify": "^0.5.1",
     "sass": "^1.22.12"
   }
 }

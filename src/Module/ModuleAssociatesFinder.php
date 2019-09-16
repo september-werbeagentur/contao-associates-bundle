@@ -5,6 +5,7 @@ namespace SeptemberWerbeagentur\ContaoAssociatesBundle\Module;
 
 
 use Contao\Module;
+use Contao\PageModel;
 use Patchwork\Utf8;
 use SeptemberWerbeagentur\ContaoAssociatesBundle\Model\AssociatesBranchesModel;
 use SeptemberWerbeagentur\ContaoAssociatesBundle\Model\AssociatesServicesModel;
@@ -48,5 +49,7 @@ class ModuleAssociatesFinder extends Module
         $this->Template->branches = AssociatesBranchesModel::findAll();
         $this->Template->languages = $GLOBALS['TL_LANG']['MSC']['september_associates']['languageOptions'];
         $this->Template->submitButton = $GLOBALS['TL_LANG']['MSC']['september_associates']['search'];
+        $jumpTo = PageModel::findByPk((int)$this->jumpTo);
+        $this->Template->jumpTo = ampersand($jumpTo->getFrontendUrl());
     }
 }
