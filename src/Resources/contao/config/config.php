@@ -35,7 +35,7 @@ if (defined('TL_MODE') && TL_MODE == 'BE') {
 
 if (defined('TL_MODE') && TL_MODE == 'FE') {
     $GLOBALS['TL_CSS'][] = 'bundles/contaoassociates/lib/css/fe_associates.css|static';
-    $GLOBALS['TL_JAVASCRIPT'][] = 'bundles/contaoassociates/lib/js/associates.js|static';
+    $GLOBALS['TL_HEAD'][] = '<script defer src="/bundles/contaoassociates/lib/js/associates.js"></script>';
 }
 
 $GLOBALS['TL_MODELS']['tl_associates'] = 'SeptemberWerbeagentur\ContaoAssociatesBundle\Model\AssociatesModel';
