@@ -62,6 +62,10 @@
     &:hover {
       background: darken($color-grey-0, 4%);
     }
+
+    &:active {
+      background: darken($color-grey-0, 8%);
+    }
   }
 
   &__icon {
