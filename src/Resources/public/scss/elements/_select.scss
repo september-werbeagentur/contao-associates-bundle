@@ -57,7 +57,7 @@
     padding: .7em 3em .8em 1em;
     min-width: 250px;
     background: $color-grey-0;
-    z-index: 1;
+    z-index: 11;
 
     &:hover {
       background: darken($color-grey-0, 4%);
@@ -95,7 +95,7 @@
     opacity: 0;
     transform: translate3d(0, -50px, 0);
     transition: all $duration-normal $timing-bezier-fast;
-    z-index: 0;
+    z-index: 10;
     box-shadow: 0 4px 4px rgba(0, 0, 0, .1), 0 4px 4px rgba(0, 0, 0, .16);
   }
 
@@ -110,6 +110,10 @@
     &.active,
     &:active {
       background: darken($color-grey-1, 8%);
+    }
+
+    &.hidden {
+      display: none;
     }
   }
 }
