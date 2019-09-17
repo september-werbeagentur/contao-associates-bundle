@@ -1,5 +1,6 @@
 <!-- indexer::stop -->
 <div class="mod_associatesfinder swa-associates-finder">
+    <?php $this->showTemplateVars(); ?>
     <form class="swa-associates-finder__form" method="post" action="<?= $this->jumpTo ?>">
         <input type="hidden" name="REQUEST_TOKEN" value="<?= REQUEST_TOKEN ?>">
         <input type="hidden" name="types" value="0">
@@ -14,6 +15,7 @@
                 </div>
             </div>
             <div class="swa-select__options">
+                <div class="swa-select__option" data-value="0">Alle</div>
                 <?php foreach ($this->types as $type): ?>
                     <div class="swa-select__option" data-value="<?= $type->id ?>"><?= $type->name ?></div>
                 <?php endforeach; ?>
@@ -27,8 +29,9 @@
                 </div>
             </div>
             <div class="swa-select__options">
+                <div class="swa-select__option" data-value="0" data-pid="0">Alle</div>
                 <?php foreach ($this->services as $service): ?>
-                    <div class="swa-select__option" data-value="<?= $service->id ?>"><?= $service->name ?></div>
+                    <div class="swa-select__option" data-pid="<?= $service->pid ?>" data-value="<?= $service->id ?>"><?= $service->name ?></div>
                 <?php endforeach; ?>
             </div>
         </div>

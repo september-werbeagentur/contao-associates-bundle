@@ -111,5 +111,9 @@
     &:active {
       background: darken($color-grey-1, 8%);
     }
+
+    &.hidden {
+      display: none;
+    }
   }
 }
