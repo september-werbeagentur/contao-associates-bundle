@@ -225,12 +225,12 @@ $GLOBALS['TL_DCA']['tl_associates'] = [
             'sql' => "blob NULL",
         ],
         'languages' => [
-            'label' => &$GLOBALS['TL_LANG']['tl_associates']['languages']['label'],
+            'label' => &$GLOBALS['TL_LANG']['tl_associates']['languages'],
             'search' => true,
             'sorting' => true,
             'flag' => 1,
             'inputType' => 'select',
-            'options' => &$GLOBALS['TL_LANG']['tl_associates']['languages']['options'],
+            'options' => &$GLOBALS['TL_LANG']['MSC']['september_associates']['languageOptions'],
             'eval' => [
                 'maxlength' => 255,
                 'includeBlankOption' => true,

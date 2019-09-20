@@ -26,16 +26,5 @@ array_insert($GLOBALS['TL_LANG']['tl_associates'], 0, [
     'branches_legend' => 'Branchen',
     'branches' => ['Branchen', 'Alle Branchen auswählen, die vom Partner betreut werden.'],
     'languages_legend' => 'Fremdsprachen',
-    'languages' => [
-        'label' => ['Fremdsprachen', 'Fremdsprachen, die gesprochen werden auswählen'],
-        'options' => [
-            'english' => 'Englisch',
-            'french' => 'Französisch',
-            'latin' => 'Latein',
-            'polish' => 'Polnisch',
-            'romansh' => 'Rätoromanisch',
-            'russian' => 'Russisch',
-            'spanish' => 'Spanisch',
-        ],
-    ],
+    'languages' => ['Fremdsprachen', 'Fremdsprachen, die gesprochen werden auswählen'],
 ]);

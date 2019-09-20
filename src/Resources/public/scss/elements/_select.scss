@@ -1,0 +1,124 @@
+.swa-select {
+  position: relative;
+  display: inline-block;
+
+  &::after {
+    content: '';
+    position: absolute;
+    display: block;
+    top: calc(100% + .7em);
+    background-color: $color-grey-1;
+    width: .75em;
+    height: .75em;
+    right: 1.2em;
+    transform: rotate(45deg) translate3d(0, -50px, 0);
+    transition: transform $duration-normal $timing-bezier-fast, opacity $duration-normal $timing-bezier-fast, visibility $duration-normal $timing-bezier-fast;
+    visibility: hidden;
+    opacity: 0;
+    z-index: -1;
+  }
+
+  &.active {
+    &::after {
+      visibility: visible;
+      opacity: 1;
+      transform: rotate(45deg);
+    }
+
+    .swa-select__options {
+      visibility: visible;
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+
+    .swa-select__icon svg {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__input,
+  &__options,
+  &__option {
+    display: block;
+    width: 100%;
+    user-select: none;
+    cursor: pointer;
+  }
+
+  &__input,
+  &__option {
+    transition: background-color $duration-short ease;
+  }
+
+  &__input {
+    position: relative;
+    font-size: 1rem;
+    padding: .7em 3em .8em 1em;
+    min-width: 250px;
+    background: $color-grey-0;
+    z-index: 11;
+
+    &:hover {
+      background: darken($color-grey-0, 4%);
+    }
+
+    &:active {
+      background: darken($color-grey-0, 8%);
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    right: 1em;
+    top: 50%;
+    width: 1em;
+    height: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(-50%);
+
+    svg {
+      height: 100%;
+      width: auto;
+      transition: transform $duration-normal $timing-bezier-fast;
+    }
+  }
+
+  &__options {
+    position: absolute;
+    top: calc(100% + 1em);
+    overflow-y: auto;
+    visibility: hidden;
+    opacity: 0;
+    transform: translate3d(0, -50px, 0);
+    transition: visibility $duration-normal $timing-bezier-fast, opacity $duration-normal $timing-bezier-fast, transform $duration-normal $timing-bezier-fast;
+    z-index: 10;
+    max-height: 300px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, .1), 0 4px 4px rgba(0, 0, 0, .16);
+  }
+
+  &__option {
+    padding: .5em 1em;
+    background: $color-grey-1;
+
+    &:hover {
+      background: darken($color-grey-1, 4%);
+    }
+
+    &.active,
+    &:active {
+      background: darken($color-grey-1, 8%);
+    }
+
+    &.hidden {
+      display: none;
+    }
+  }
+
+  &__label {
+    display: block;
+    margin-bottom: .5em;
+    width: 100%;
+  }
+}
