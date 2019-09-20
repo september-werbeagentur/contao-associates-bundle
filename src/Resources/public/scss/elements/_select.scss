@@ -29,7 +29,6 @@
       visibility: visible;
       opacity: 1;
       transform: translate3d(0, 0, 0);
-      max-height: 350px;
     }
 
     .swa-select__icon svg {
@@ -89,13 +88,13 @@
   &__options {
     position: absolute;
     top: calc(100% + 1em);
-    max-height: 0;
     overflow-y: auto;
     visibility: hidden;
     opacity: 0;
     transform: translate3d(0, -50px, 0);
-    transition: all $duration-normal $timing-bezier-fast;
+    transition: visibility $duration-normal $timing-bezier-fast, opacity $duration-normal $timing-bezier-fast, transform $duration-normal $timing-bezier-fast;
     z-index: 10;
+    max-height: 300px;
     box-shadow: 0 4px 4px rgba(0, 0, 0, .1), 0 4px 4px rgba(0, 0, 0, .16);
   }
 
@@ -115,5 +114,11 @@
     &.hidden {
       display: none;
     }
+  }
+
+  &__label {
+    display: block;
+    margin-bottom: .5em;
+    width: 100%;
   }
 }
