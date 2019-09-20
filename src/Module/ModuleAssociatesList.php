@@ -41,12 +41,22 @@ class ModuleAssociatesList extends Module
      */
     protected function compile()
     {
-        $this->Template->types = \Input::post('types');
-        $this->Template->services = \Input::post('services');
-        $this->Template->branches = \Input::post('branches');
-        $this->Template->languages = \Input::post('languages');
-        $this->Template->associates = AssociatesModel::findByParameters([
-            'types' => \Input::post('types'),
+        $this->fetchPostData();
+
+        $this->Template->types = $this->types;
+        $this->Template->services = $this->services;
+        $this->Template->branches = $this->branches;
+        $this->Template->languages = $this->languages;
+        $this->Template->associates = AssociatesModel::findAssociatesBy([
+            'types' => $this->types,
+            'services' => $this->services,
         ]);
+    }
+
+    protected function fetchPostData() {
+        $this->types = \Input::post('types');
+        $this->services = \Input::post('services');
+        $this->branches = \Input::post('branches');
+        $this->languages = \Input::post('languages');
     }
 }
