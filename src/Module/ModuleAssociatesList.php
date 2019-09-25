@@ -5,6 +5,7 @@ namespace SeptemberWerbeagentur\ContaoAssociatesBundle\Module;
 
 
 use Contao\Module;
+use Contao\PageModel;
 use Patchwork\Utf8;
 use SeptemberWerbeagentur\ContaoAssociatesBundle\Model\AssociatesModel;
 
@@ -50,7 +51,13 @@ class ModuleAssociatesList extends Module
         $this->Template->associates = AssociatesModel::findAssociatesBy([
             'types' => $this->types,
             'services' => $this->services,
+            'languages' => $this->languages,
+            'branches' => $this->branches
         ]);
+        $jumpTo = PageModel::findByPk((int)$this->jumpTo);
+        $this->Template->jumpTo = ampersand($jumpTo->getFrontendUrl());
+        $this->Template->noResult = $this->swa_noResult;
+        $this->Template->noResult_default = $GLOBALS['TL_LANG']['tl_module']['swa_noResult_default'];
     }
 
     protected function fetchPostData() {
