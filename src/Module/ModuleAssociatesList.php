@@ -68,6 +68,7 @@ class ModuleAssociatesList extends Module
         if (isset($this->originAddress)
             && $this->originAddress !== ''
             && isset($this->radius)
+            && $this->radius
             && isset($this->swa_distance_matrix_key)
             && $this->swa_distance_matrix_key !== ''
         ) {
@@ -96,8 +97,20 @@ class ModuleAssociatesList extends Module
             $destinations[] = $associate->street . ' ' . $associate->street_number . ', ' . $associate->zip . ' ' . $associate->city;
         }
 
-        $this->Template->DMAQuery = DistanceMatrixAPIHelper::fetchDMAQuery(
+        $result = DistanceMatrixAPIHelper::fetchDMAQuery(
             DistanceMatrixAPIHelper::buildDMAQueryString([$this->originAddress], $destinations, $this->swa_distance_matrix_key)
         );
+
+        $this->Template->DMAResult = $result;
+
+        if ($result->status === 'OK') {
+            $arrReturn = [];
+            foreach ($associates as $i => $associate) {
+                if ($result->rows[0]->elements[$i]->distance->value <= ($this->radius * 1000)) {
+                    array_push($arrReturn, $associate);
+                }
+            }
+            return $arrReturn;
+        } else return $associates;
     }
 }
