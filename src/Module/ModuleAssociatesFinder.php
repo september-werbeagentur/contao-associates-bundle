@@ -44,10 +44,12 @@ class ModuleAssociatesFinder extends Module
      */
     protected function compile()
     {
+        $this->Template->id = $this->id;
         $this->Template->types = AssociatesTypesModel::findAll();
         $this->Template->services = AssociatesServicesModel::findAll();
         $this->Template->branches = AssociatesBranchesModel::findAll();
         $this->Template->languages = $GLOBALS['TL_LANG']['MSC']['september_associates']['languageOptions'];
+        $this->Template->radiusOptions = $GLOBALS['TL_LANG']['MSC']['september_associates']['radiusOptions'];
         $this->Template->submitButton = $GLOBALS['TL_LANG']['MSC']['september_associates']['search'];
         $jumpTo = PageModel::findByPk((int)$this->jumpTo);
         $this->Template->jumpTo = ampersand($jumpTo->getFrontendUrl());

@@ -29,7 +29,7 @@
                         <?= $associate->homepage ?>
                     </a>
                     <a class="swa-associates-list__details"
-                       href="<?= $this->jumpTo . '?partner=' . $associate->id ?>"
+                       href="<?= $this->jumpTo . '?id=' . $associate->id ?>"
                        title="<?= $associate->name ?> ansehen">
                         Details
                     </a>
