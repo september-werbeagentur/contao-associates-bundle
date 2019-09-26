@@ -16,10 +16,10 @@ $GLOBALS['TL_DCA']['tl_associates'] = [
         'sorting' => [
             'mode' => 1,
             'flag' => 1,
-            'fields' => ['name'],
+            'fields' => ['name', 'city'],
         ],
         'label' => [
-            'fields' => ['name'],
+            'fields' => ['name', 'city'],
             'showColumns' => true,
             'format' => '%s',
         ],
