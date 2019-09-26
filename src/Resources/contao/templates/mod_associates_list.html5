@@ -3,6 +3,7 @@
 <?php $this->block('content'); ?>
 
 <div class="swa-associates-list">
+    <?= $this->showTemplateVars(); ?>
     <?php if (count($this->associates)): ?>
         <ul class="swa-associates-list__results">
             <?php foreach ($this->associates as $associate): ?>
