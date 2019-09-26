@@ -90,16 +90,14 @@ class ModuleAssociatesList extends Module
     }
 
     private function getAssociatesWithinRadius($associates, $address, $radius) {
-        $origins = [];
         $destinations = [];
 
         foreach ($associates as $associate) {
-            $origins[] = $this->originAddress;
             $destinations[] = $associate->street . ' ' . $associate->street_number . ', ' . $associate->zip . ' ' . $associate->city;
         }
 
         $this->Template->DMAQuery = DistanceMatrixAPIHelper::fetchDMAQuery(
-            DistanceMatrixAPIHelper::buildDMAQueryString($origins, $destinations, $this->swa_distance_matrix_key)
+            DistanceMatrixAPIHelper::buildDMAQueryString([$this->originAddress], $destinations, $this->swa_distance_matrix_key)
         );
     }
 }
