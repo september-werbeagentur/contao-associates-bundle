@@ -2,7 +2,7 @@
   "name": "september-werbeagentur/contao-associates-bundle",
   "type": "contao-bundle",
   "description": "Associates extension for Contao Open Source CMS",
-  "license": "MIT",
+  "license": "GPL-3.0",
   "authors": [
     {
       "name": "September Werbeagentur",
