@@ -8,3 +8,4 @@ $GLOBALS['TL_LANG']['MOD']['september_branches'] = ['Branchen', 'Branchen verwal
 $GLOBALS['TL_LANG']['FMD']['SeptemberAssociates'] = ['Beratersuche'];
 $GLOBALS['TL_LANG']['FMD']['associatesfinder'] = ['Suchformular'];
 $GLOBALS['TL_LANG']['FMD']['associateslist'] = ['Ergebnisliste'];
+$GLOBALS['TL_LANG']['FMD']['associatesdetails'] = ['Detailansicht'];
