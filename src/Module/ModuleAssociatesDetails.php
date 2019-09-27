@@ -6,6 +6,10 @@ namespace SeptemberWerbeagentur\ContaoAssociatesBundle\Module;
 
 use Contao\Module;
 use Patchwork\Utf8;
+use SeptemberWerbeagentur\ContaoAssociatesBundle\Model\AssociatesBranchesModel;
+use SeptemberWerbeagentur\ContaoAssociatesBundle\Model\AssociatesModel;
+use SeptemberWerbeagentur\ContaoAssociatesBundle\Model\AssociatesServicesModel;
+use SeptemberWerbeagentur\ContaoAssociatesBundle\Model\AssociatesTypesModel;
 
 class ModuleAssociatesDetails extends Module
 {
@@ -41,7 +45,41 @@ class ModuleAssociatesDetails extends Module
      */
     protected function compile()
     {
-        // TODO: Implement compile() method.
+        $associate = AssociatesModel::findByPk(self::getID());
+        $associate->image = \FilesModel::findByUuid($associate->image);
+        $associate->logo = \FilesModel::findByUuid($associate->logo);
 
+        $types = unserialize($associate->types);
+        $services = unserialize($associate->services);
+        $branches = unserialize($associate->branches);
+        $languages = unserialize($associate->languages);
+
+        $typeNames = [];
+        $serviceNames = [];
+        $branchNames = [];
+        $languageNames = [];
+
+        foreach ($types as $type) {
+            $typeNames[] = AssociatesTypesModel::findByPk(intval($type))->name;
+        }
+        foreach ($services as $service) {
+            $serviceNames[] = AssociatesServicesModel::findByPk(intval($service))->name;
+        }
+        foreach ($branches as $branch) {
+            $branchNames[] = AssociatesBranchesModel::findByPk(intval($branch))->name;
+        }
+        foreach ($languages as $language) {
+            $languageNames[] = $GLOBALS['TL_LANG']['MSC']['september_associates']['languageOptions'][$language];
+        }
+
+        $associate->types = $typeNames;
+        $associate->services = $serviceNames;
+        $associate->branches = $branchNames;
+        $associate->languages = $languageNames;
+        $this->Template->associate = $associate;
+    }
+
+    private function getID() {
+        return intval(\Input::get('id'));
     }
 }

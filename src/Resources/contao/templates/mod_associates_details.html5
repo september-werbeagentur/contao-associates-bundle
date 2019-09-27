@@ -3,7 +3,7 @@
 <?php $this->block('content'); ?>
 
 <div class="swa-associates-details">
-
+    <?php $this->showTemplateVars(); ?>
 </div>
 
 <?php $this->endblock(); ?>
