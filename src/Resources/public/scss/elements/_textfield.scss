@@ -1,0 +1,18 @@
+.swa-textfield {
+  position: relative;
+  display: inline-block;
+  min-width: 200px;
+
+  &__input {
+    background: $color-grey-0;
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: .7em 1em .8em;
+    transition: background-color $duration-short ease;
+
+    &:hover {
+      background: $color-grey-1;
+    }
+  }
+}

@@ -15,7 +15,7 @@
     transition: transform $duration-normal $timing-bezier-fast, opacity $duration-normal $timing-bezier-fast, visibility $duration-normal $timing-bezier-fast;
     visibility: hidden;
     opacity: 0;
-    z-index: -1;
+    z-index: 9;
   }
 
   &.active {
@@ -54,9 +54,9 @@
     position: relative;
     font-size: 1rem;
     padding: .7em 3em .8em 1em;
-    min-width: 250px;
+    min-width: 200px;
     background: $color-grey-0;
-    z-index: 11;
+    z-index: 9;
 
     &:hover {
       background: darken($color-grey-0, 4%);
