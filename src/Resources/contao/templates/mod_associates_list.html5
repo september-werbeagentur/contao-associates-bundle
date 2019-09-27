@@ -3,37 +3,44 @@
 <?php $this->block('content'); ?>
 
 <div class="swa-associates-list">
-    <?= $this->showTemplateVars(); ?>
     <?php if (count($this->associates)): ?>
         <ul class="swa-associates-list__results">
             <?php foreach ($this->associates as $associate): ?>
                 <li class="swa-associates-list__result">
-                    <img src="<?= $associate->logo->path ?>" alt="Logo <?= $associate->name ?>">
-                    <h1 class="swa-associates-list__title"><?= $associate->name ?></h1>
-                    <div class="swa-associates-list__address">
-                        <?= $associate->street ?> <?= $associate->street_number ?><br><?= $associate->zip ?> <?= $associate->city ?>
+                    <div class="swa-associates-list__box">
+                        <div class="swa-associates-list__logo">
+                            <img src="<?= $associate->logo->path ?>" alt="Logo <?= $associate->name ?>">
+                        </div>
+                        <div class="swa-associates-list__description">
+                            <h2 class="swa-associates-list__title"><?= $associate->name ?></h2>
+                            <div class="swa-associates-list__address">
+                                <?= $associate->street ?> <?= $associate->street_number ?><br><?= $associate->zip ?> <?= $associate->city ?>
+                            </div>
+                            <div class="swa-associates-list__contact">
+                                <a class="swa-associates-list__phone"
+                                   href="tel:<?= $associate->phone ?>"
+                                   title="<?= $associate->name ?> anrufen">
+                                    Telefon: <?= $associate->phone ?>
+                                </a>
+                                <div class="swa-associates-list__fax">
+                                    Fax: <?= $associate->fax ?>
+                                </div>
+                                <a class="swa-associates-list__email"
+                                   href="mailto:<?= $associate->email ?>"
+                                   title="E-Mail an <?= $associate->email ?> senden">E-Mail: <?= $associate->email ?></a>
+                            </div>
+                            <a class="swa-associates-list__homepage"
+                               href="<?= $associate->homepage ?>"
+                               title="Website von <?= $associate->name ?> öffnen">
+                                <?= $associate->homepage ?>
+                            </a>
+                            <a class="swa-associates-list__details"
+                               href="<?= $this->jumpTo . '?id=' . $associate->id ?>"
+                               title="<?= $associate->name ?> ansehen">
+                                Details
+                            </a>
+                        </div>
                     </div>
-                    <a class="swa-associates-list__phone"
-                       href="tel:<?= $associate->phone ?>"
-                       title="<?= $associate->name ?> anrufen">
-                        <i class="fas fa-phone"></i><?= $associate->phone ?>
-                    </a>
-                    <div class="swa-associates-list__fax">
-                        <i class="fas fa-fax"></i><?= $associate->fax ?>
-                    </div>
-                    <a class="swa-associates-list__email"
-                       href="mailto:<?= $associate->email ?>"
-                       title="E-Mail an <?= $associate->email ?> senden"><?= $associate->email ?></a>
-                    <a class="swa-associates-list__homepage"
-                       href="<?= $associate->homepage ?>"
-                       title="Website von <?= $associate->name ?> öffnen">
-                        <?= $associate->homepage ?>
-                    </a>
-                    <a class="swa-associates-list__details"
-                       href="<?= $this->jumpTo . '?id=' . $associate->id ?>"
-                       title="<?= $associate->name ?> ansehen">
-                        Details
-                    </a>
                 </li>
             <?php endforeach; ?>
         </ul>
