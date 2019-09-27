@@ -1,5 +1,7 @@
 <?php
 
+use SeptemberWerbeagentur\ContaoAssociatesBundle\Model\AssociatesServicesModel;
+
 $GLOBALS['TL_DCA']['tl_associates'] = [
     'config' => [
         'dataContainer' => 'Table',
@@ -14,10 +16,10 @@ $GLOBALS['TL_DCA']['tl_associates'] = [
         'sorting' => [
             'mode' => 1,
             'flag' => 1,
-            'fields' => ['name'],
+            'fields' => ['name', 'city'],
         ],
         'label' => [
-            'fields' => ['name'],
+            'fields' => ['name', 'city'],
             'showColumns' => true,
             'format' => '%s',
         ],
@@ -201,13 +203,14 @@ $GLOBALS['TL_DCA']['tl_associates'] = [
             'eval' => [
                 'tl_class' => 'w50',
                 'multiple' => true,
+                'submitOnChange' => true,
             ],
             'sql' => "blob NULL",
         ],
         'services' => [
             'label' => &$GLOBALS['TL_LANG']['tl_associates']['services'],
             'inputType' => 'checkboxWizard',
-            'foreignKey' => 'tl_associates_services.name',
+            'options_callback' => ['tl_associates', 'getServicesOptions'],
             'eval' => [
                 'tl_class' => 'w50',
                 'multiple' => true,
@@ -242,3 +245,24 @@ $GLOBALS['TL_DCA']['tl_associates'] = [
         ],
     ],
 ];
+
+class tl_associates extends Contao\Backend
+{
+    public function getServicesOptions(DataContainer $dc) {
+        $types = array_values(unserialize($dc->activeRecord->types));
+
+        if (count($types) === 0) {
+            return [];
+        }
+
+        $query = "SELECT tl_associates_services.id, tl_associates_services.name FROM tl_associates_services WHERE tl_associates_services.pid IN (" . implode(',', $types) .");";
+        $result = Database::getInstance()->prepare($query)->execute();
+
+        $options = [];
+        while ($result->next()) {
+            $options[$result->id] = $result->name;
+        }
+
+        return $options;
+    }
+}

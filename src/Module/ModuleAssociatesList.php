@@ -5,7 +5,10 @@ namespace SeptemberWerbeagentur\ContaoAssociatesBundle\Module;
 
 
 use Contao\Module;
+use Contao\PageModel;
+use Contao\System;
 use Patchwork\Utf8;
+use SeptemberWerbeagentur\ContaoAssociatesBundle\Helper\DistanceMatrixAPIHelper;
 use SeptemberWerbeagentur\ContaoAssociatesBundle\Model\AssociatesModel;
 
 class ModuleAssociatesList extends Module
@@ -15,6 +18,14 @@ class ModuleAssociatesList extends Module
      * @var string
      */
     protected $strTemplate = 'mod_associates_list';
+
+    private $associates;
+    private $types;
+    private $services;
+    private $branches;
+    private $languages;
+    private $originAddress;
+    private $radius;
 
     /**
      * Display wildcard in backend
@@ -41,12 +52,65 @@ class ModuleAssociatesList extends Module
      */
     protected function compile()
     {
-        $this->Template->types = \Input::post('types');
-        $this->Template->services = \Input::post('services');
-        $this->Template->branches = \Input::post('branches');
-        $this->Template->languages = \Input::post('languages');
-        $this->Template->associates = AssociatesModel::findByParameters([
-            'types' => \Input::post('types'),
+        $this->fetchPostData();
+
+        $this->Template->types = $this->types;
+        $this->Template->services = $this->services;
+        $this->Template->branches = $this->branches;
+        $this->Template->languages = $this->languages;
+        $this->associates = AssociatesModel::findAssociatesBy([
+            'types' => $this->types,
+            'services' => $this->services,
+            'languages' => $this->languages,
+            'branches' => $this->branches
         ]);
+
+        if (isset($this->originAddress)
+            && $this->originAddress !== ''
+            && isset($this->radius)
+            && $this->radius
+            && isset($this->swa_distance_matrix_key)
+            && $this->swa_distance_matrix_key !== ''
+        ) {
+            $this->associates = $this->getAssociatesWithinRadius($this->associates, $this->originAddress, $this->radius);
+        }
+        $this->Template->associates = $this->associates;
+        $jumpTo = PageModel::findByPk((int)$this->jumpTo);
+        $this->Template->jumpTo = ampersand($jumpTo->getFrontendUrl());
+        $this->Template->noResult = $this->swa_noResult;
+        $this->Template->noResult_default = $GLOBALS['TL_LANG']['tl_module']['swa_noResult_default'];
+    }
+
+    protected function fetchPostData() {
+        $this->types = \Input::post('types');
+        $this->services = \Input::post('services');
+        $this->branches = \Input::post('branches');
+        $this->languages = \Input::post('languages');
+        $this->originAddress = \Input::post('originAddress');
+        $this->radius = intval(\Input::post('radius'));
+    }
+
+    private function getAssociatesWithinRadius($associates, $address, $radius) {
+        $destinations = [];
+
+        foreach ($associates as $associate) {
+            $destinations[] = $associate->street . ' ' . $associate->street_number . ', ' . $associate->zip . ' ' . $associate->city;
+        }
+
+        $result = DistanceMatrixAPIHelper::fetchDMAQuery(
+            DistanceMatrixAPIHelper::buildDMAQueryString([$this->originAddress], $destinations, $this->swa_distance_matrix_key)
+        );
+
+        $this->Template->DMAResult = $result;
+
+        if ($result->status === 'OK') {
+            $arrReturn = [];
+            foreach ($associates as $i => $associate) {
+                if ($result->rows[0]->elements[$i]->distance->value <= ($this->radius * 1000)) {
+                    array_push($arrReturn, $associate);
+                }
+            }
+            return $arrReturn;
+        } else return $associates;
     }
 }

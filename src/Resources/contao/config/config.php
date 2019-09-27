@@ -26,6 +26,7 @@ array_insert($GLOBALS['FE_MOD'], 3, [
     'SeptemberAssociates' => [
         'associatesfinder' => 'SeptemberWerbeagentur\ContaoAssociatesBundle\Module\ModuleAssociatesFinder',
         'associateslist' => 'SeptemberWerbeagentur\ContaoAssociatesBundle\Module\ModuleAssociatesList',
+        'associatesdetails' => 'SeptemberWerbeagentur\ContaoAssociatesBundle\Module\ModuleAssociatesDetails',
     ],
 ]);
 
