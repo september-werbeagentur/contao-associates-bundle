@@ -20,7 +20,6 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['swa_distance_matrix_key'] = [
     'inputType' => 'text',
     'eval' => [
         'maxlength' => 255,
-        'mandatory' => true,
     ],
     'sql' => "varchar(255) NOT NULL default ''",
 ];
